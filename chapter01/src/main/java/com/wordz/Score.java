@@ -1,8 +1,11 @@
 package com.wordz;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Score {
     private final String correct;
-    private Letter result = Letter.INCORRECT;
+    private List<Letter> results = new ArrayList<>();
     private int position;
 
     public Score(String correct) {
@@ -10,8 +13,8 @@ public class Score {
         this.correct = correct;
     }
 
-    public Letter letter(int i) {
-        return result;
+    public Letter letter(int position) {
+        return results.get(position);
     }
 
     public void access(String attempt) {
@@ -20,17 +23,20 @@ public class Score {
 
             if (isCorrectLetter(current)) {
 
-                result = Letter.CORRECT;
-            } else if (occuresInWord(current)) {
+                results.add(Letter.CORRECT);
+            } else if (occursInWord(current)) {
 
-                result = Letter.PART_CORRECT;
+                results.add(Letter.PART_CORRECT);
+            } else {
+
+                results.add(Letter.CORRECT);
             }
 
             position++;
         }
     }
 
-    private boolean occuresInWord(char current) {
+    private boolean occursInWord(char current) {
         return correct.contains(String.valueOf(current));
     }
 
