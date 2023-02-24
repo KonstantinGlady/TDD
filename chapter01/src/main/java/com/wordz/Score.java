@@ -14,14 +14,27 @@ public class Score {
         return result;
     }
 
-    public void access(int position, String attempt) {
+    public void access(String attempt) {
 
-        if (isCorrectLetter(attempt)) {
-            result = Letter.CORRECT;
+        for (char current : attempt.toCharArray()) {
+
+            if (isCorrectLetter(current)) {
+
+                result = Letter.CORRECT;
+            } else if (occuresInWord(current)) {
+
+                result = Letter.PART_CORRECT;
+            }
+
+            position++;
         }
     }
 
-    private boolean isCorrectLetter(String attempt) {
-        return correct.charAt(position) == attempt.charAt(position);
+    private boolean occuresInWord(char current) {
+        return correct.contains(String.valueOf(current));
+    }
+
+    private boolean isCorrectLetter(char current) {
+        return correct.charAt(position) == current;
     }
 }
