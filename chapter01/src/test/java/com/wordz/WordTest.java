@@ -12,6 +12,7 @@ class WordTest {
         var word = new Word("A");
         var score = word.guess("Z");
         var result = score.letter(0);
+
         assertThat(result).isEqualTo(Letter.INCORRECT);
     }
 
@@ -20,6 +21,7 @@ class WordTest {
 
         var word = new Word("A");
         var score = word.guess("A");
+
         assertThat(score.letter(0)).isEqualTo(Letter.CORRECT);
     }
 }
