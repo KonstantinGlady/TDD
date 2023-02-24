@@ -1,5 +1,6 @@
 package com.wordz;
 
+import org.assertj.core.api.AbstractComparableAssert;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
@@ -11,9 +12,8 @@ class WordTest {
 
         var word = new Word("A");
         var score = word.guess("Z");
-        var result = score.letter(0);
 
-        assertThat(result).isEqualTo(Letter.INCORRECT);
+        assertScoreForLetter(score, 0, Letter.INCORRECT);
     }
 
     @Test
@@ -22,6 +22,10 @@ class WordTest {
         var word = new Word("A");
         var score = word.guess("A");
 
-        assertThat(score.letter(0)).isEqualTo(Letter.CORRECT);
+        assertScoreForLetter(score, 0, Letter.CORRECT);
+    }
+
+    private void assertScoreForLetter(Score score, int position, Letter expected) {
+        assertThat(score.letter(position)).isEqualTo(expected);
     }
 }
