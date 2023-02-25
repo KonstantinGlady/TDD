@@ -1,9 +1,7 @@
 package org.example;
 
-public class Graphics {
-    public void drawText(String text) {
-    }
+public interface Graphics {
+    void drawText(String text);
 
-    public void drawLine(int i, Object width) {
-    }
+    void drawLine(int i, Object width);
 }
