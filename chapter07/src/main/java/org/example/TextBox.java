@@ -1,6 +1,6 @@
 package org.example;
 
-public class TextBox extends Shape{
+public class TextBox implements Shape{
     public String getText() {
         return null;
     }

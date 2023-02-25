@@ -1,7 +1,5 @@
 package org.example;
 
-public class Shape {
-    public String getType() {
-        return null;
-    }
+public interface Shape {
+    void draw(Graphics g);
 }

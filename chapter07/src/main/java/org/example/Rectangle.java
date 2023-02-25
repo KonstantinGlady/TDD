@@ -1,6 +1,6 @@
 package org.example;
 
-public class Rectangle extends Shape {
+public class Rectangle implements Shape {
     public int getHeight() {
         return 0;
     }
