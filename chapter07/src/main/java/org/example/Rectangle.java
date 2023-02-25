@@ -8,4 +8,12 @@ public class Rectangle extends Shape {
     public int getWidth() {
         return 0;
     }
+
+    public void draw(Graphics g) {
+        for (int row = 0;
+             row < getHeight();
+             row++) {
+            g.drawLine(0, getWidth());
+        }
+    }
 }
