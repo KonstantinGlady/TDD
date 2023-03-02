@@ -9,8 +9,14 @@ public class UserNotifications {
     }
 
     public void welcomeNewUser(String recipient) {
-        mailServer.sendEmail(recipient,
-                "Welcome!",
-                "Welcome to account");
+
+        try {
+            mailServer.sendEmail(recipient,
+                    "Welcome!",
+                    "Welcome to account");
+
+        } catch (IllegalArgumentException ex) {
+            throw new NotificationFailureException();
+        }
     }
 }
