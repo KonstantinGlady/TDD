@@ -1,15 +1,15 @@
 package org.example.mockito.mock;
 
 public class UserNotifications {
-    private final EmailServer emailServer;
+    private final MailServer mailServer;
 
-    public UserNotifications(EmailServer emailServer) {
+    public UserNotifications(MailServer mailServer) {
 
-        this.emailServer = emailServer;
+        this.mailServer = mailServer;
     }
 
     public void welcomeNewUser(String recipient) {
-        emailServer.sendEmail(recipient,
+        mailServer.sendEmail(recipient,
                 "Welcome!",
                 "Welcome to account");
     }
