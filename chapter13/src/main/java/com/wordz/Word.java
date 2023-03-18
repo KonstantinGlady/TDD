@@ -1,7 +1,5 @@
 package com.wordz;
 
-import java.io.StreamCorruptedException;
-
 public class Word {
     private final String word;
 
