@@ -13,7 +13,7 @@ public class Word {
 
         var score = new Score(word);
 
-        score.access(0, attempt);
+        score.access(attempt);
 
         return score;
     }
