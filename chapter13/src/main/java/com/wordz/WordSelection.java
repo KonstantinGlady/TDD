@@ -10,6 +10,8 @@ public class WordSelection {
     }
 
     public String choseRandomWord() {
-        return null;
+        var wordNumber = random.next(wordRepository.highestWordNumber());
+
+        return wordRepository.fetchWordByNumber(wordNumber);
     }
 }
