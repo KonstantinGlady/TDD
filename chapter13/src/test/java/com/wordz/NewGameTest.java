@@ -8,15 +8,45 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class NewGameTest {
 
     @Mock
     private GameRepository gameRepository;
+    @Mock
+    private WordRepository wordRepository;
+    @Mock
+    private RandomNumbers randomNumbers;
     @InjectMocks
     private Wordz wordz;
+
+    @Test
+    void selectRandomWord() {
+
+        givenWordToSelect("ABCDE");
+
+        var player = new Player();
+        wordz.newGame(player);
+
+        var game = getGameInRepository();
+
+        assertThat(game.getWord())
+                .isEqualTo("ABCDE");
+    }
+
+    private void givenWordToSelect(String wordToSelect) {
+
+        int wordNumber = 2;
+
+        when(randomNumbers.next(anyInt()))
+                .thenReturn(wordNumber);
+        when(wordRepository.fetchWordByNumber(wordNumber))
+                .thenReturn(wordToSelect);
+    }
 
     @Test
     void startNewGame() {
