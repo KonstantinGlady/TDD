@@ -23,14 +23,14 @@ public class NewGameTest {
     private RandomNumbers randomNumbers;
     @InjectMocks
     private Wordz wordz;
+    private final Player PLAYER = new Player();
 
     @Test
     void selectRandomWord() {
 
         givenWordToSelect("ABCDE");
 
-        var player = new Player();
-        wordz.newGame(player);
+        wordz.newGame(PLAYER);
 
         var game = getGameInRepository();
 
@@ -53,8 +53,7 @@ public class NewGameTest {
 
         givenWordToSelect("ARISE");
 
-        var player = new Player();
-        wordz.newGame(player);
+        wordz.newGame(PLAYER);
 
         Game game = getGameInRepository();
 
@@ -63,7 +62,7 @@ public class NewGameTest {
         assertThat(game.getAttemptNumbers())
                 .isZero();
         assertThat(game.getPlayer())
-                .isSameAs(player);
+                .isSameAs(PLAYER);
     }
 
     private Game getGameInRepository() {
