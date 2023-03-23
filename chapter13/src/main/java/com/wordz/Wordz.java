@@ -12,7 +12,9 @@ public class Wordz {
 
     public void newGame(Player player) {
 
-        var game = new Game(player, "ARISE", 0);
+        var word = wordSelection.choseRandomWord();
+
+        var game = new Game(player, word, 0);
 
         gameRepository.create(game);
     }
