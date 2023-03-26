@@ -14,8 +14,12 @@ public class Wordz {
 
         var word = wordSelection.choseRandomWord();
 
-        var game = new Game(player, word, 0);
+        var game = new Game(player, word, 0, false);
 
         gameRepository.create(game);
+    }
+
+    public GuessResult access(Player player, String guess) {
+        return null;
     }
 }
