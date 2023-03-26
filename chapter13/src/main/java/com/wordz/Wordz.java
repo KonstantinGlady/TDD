@@ -20,6 +20,11 @@ public class Wordz {
     }
 
     public GuessResult access(Player player, String guess) {
-        return null;
+
+        var game = gameRepository.fetchForPlayer(player);
+        var target = new Word(game.getWord());
+        var score = target.guess(guess);
+
+        return new GuessResult(score, false);
     }
 }
