@@ -20,15 +20,11 @@ public class Game {
         return word;
     }
 
-    public int getAttemptNumbers() {
+    public int getAttemptNumber() {
         return attempt;
     }
 
     public Player getPlayer() {
         return player;
-    }
-
-    public int getAttemptNumber() {
-        return 0;
     }
 }

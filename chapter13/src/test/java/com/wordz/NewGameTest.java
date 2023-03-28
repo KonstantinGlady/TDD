@@ -59,7 +59,7 @@ public class NewGameTest {
 
         assertThat(game.getWord())
                 .isEqualTo("ARISE");
-        assertThat(game.getAttemptNumbers())
+        assertThat(game.getAttemptNumber())
                 .isZero();
         assertThat(game.getPlayer())
                 .isSameAs(PLAYER);
