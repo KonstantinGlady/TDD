@@ -3,7 +3,7 @@ package com.wordz;
 public class Game {
     private final Player player;
     private final String word;
-    private final int attempt;
+    private int attempt;
 
     public Game(Player player, String word, int attempt, boolean b) {
 
@@ -26,5 +26,9 @@ public class Game {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void incrementAttemptNumber() {
+        attempt++;
     }
 }

@@ -22,6 +22,10 @@ public class Wordz {
     public GuessResult assess(Player player, String guess) {
 
         var game = gameRepository.fetchForPlayer(player);
+
+        game.incrementAttemptNumber();
+        gameRepository.update(game);
+
         var target = new Word(game.getWord());
         var score = target.guess(guess);
 
