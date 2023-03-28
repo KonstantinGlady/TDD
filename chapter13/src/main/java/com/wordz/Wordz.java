@@ -23,11 +23,9 @@ public class Wordz {
 
         var game = gameRepository.fetchForPlayer(player);
 
-        game.incrementAttemptNumber();
-        gameRepository.update(game);
+        Score score = game.attempt(guess);
 
-        var target = new Word(game.getWord());
-        var score = target.guess(guess);
+        gameRepository.update(game);
 
         return new GuessResult(score, false);
     }

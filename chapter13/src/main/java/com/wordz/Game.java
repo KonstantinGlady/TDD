@@ -2,26 +2,26 @@ package com.wordz;
 
 public class Game {
     private final Player player;
-    private final String word;
-    private int attempt;
+    private final String targetWord;
+    private int attemptNumber;
 
-    public Game(Player player, String word, int attempt, boolean b) {
+    public Game(Player player, String targetWord, int attemptNumber, boolean b) {
 
         this.player = player;
-        this.word = word;
-        this.attempt = attempt;
+        this.targetWord = targetWord;
+        this.attemptNumber = attemptNumber;
     }
 
     public static Game create(Player player, String correctWord) {
         return new Game(player, correctWord, 0, false);
     }
 
-    public String getWord() {
-        return word;
+    public String getTargetWord() {
+        return targetWord;
     }
 
     public int getAttemptNumber() {
-        return attempt;
+        return attemptNumber;
     }
 
     public Player getPlayer() {
@@ -29,6 +29,13 @@ public class Game {
     }
 
     public void incrementAttemptNumber() {
-        attempt++;
+        attemptNumber++;
+    }
+
+    public Score attempt(String lastGuess) {
+        attemptNumber++;
+        var target = new Word(targetWord);
+
+        return target.guess(lastGuess);
     }
 }

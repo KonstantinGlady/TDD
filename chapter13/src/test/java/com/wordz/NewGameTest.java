@@ -34,7 +34,7 @@ public class NewGameTest {
 
         var game = getGameInRepository();
 
-        assertThat(game.getWord())
+        assertThat(game.getTargetWord())
                 .isEqualTo("ABCDE");
     }
 
@@ -57,7 +57,7 @@ public class NewGameTest {
 
         Game game = getGameInRepository();
 
-        assertThat(game.getWord())
+        assertThat(game.getTargetWord())
                 .isEqualTo("ARISE");
         assertThat(game.getAttemptNumber())
                 .isZero();
