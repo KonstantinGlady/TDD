@@ -19,7 +19,7 @@ public class Wordz {
         gameRepository.create(game);
     }
 
-    public GuessResult access(Player player, String guess) {
+    public GuessResult assess(Player player, String guess) {
 
         var game = gameRepository.fetchForPlayer(player);
         var target = new Word(game.getWord());

@@ -23,7 +23,7 @@ public class GuessTest {
     @Test
     void returnScoreForGuess() {
         givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
-        GuessResult result = wordz.access(PLAYER, WRONG_WORD);
+        GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
         Letter firstLetter = result.score().letter(0);
 
         assertThat(firstLetter)
