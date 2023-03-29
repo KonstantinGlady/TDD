@@ -32,7 +32,6 @@ public class GuessTest {
                 .thenReturn(game);
 
         // var wordz = new Wordz(gameRepository, wordRepository, randomNumber);// no clue why author use this constructor
-        givenGameInRepository(game);
 
         var guess = "ARISE";
         GuessResult result = wordz.assess(player, guess);
