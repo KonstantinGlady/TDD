@@ -8,6 +8,20 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 public class WordTest {
 
     @Test
+    void reportAllCorrect() {
+        var word = new Word("ARISE");
+        var score = word.guess("ARISE");
+        assertThat(score.allCorrect()).isTrue();
+    }
+
+    @Test
+    void reportNotAllCorrect() {
+        var word = new Word("ARISE");
+        var score = word.guess("ARI*S");
+        assertThat(score.allCorrect()).isFalse();
+    }
+
+    @Test
     void oneIncorrectLetter() {
 
         var word = new Word("A");

@@ -23,6 +23,24 @@ public class GuessTest {
     private Wordz wordz;
 
     @Test
+    void reportsGameOverOnCorrectGuess() {
+
+        Player player = new Player();
+
+        var game = new Game(player, "ARISE", 0, false);
+        when(gameRepository.fetchForPlayer(player))
+                .thenReturn(game);
+
+        // var wordz = new Wordz(gameRepository, wordRepository, randomNumber);// no clue why author use this constructor
+        givenGameInRepository(game);
+
+        var guess = "ARISE";
+        GuessResult result = wordz.assess(player, guess);
+
+        assertThat(result.isGameOver()).isTrue();
+    }
+
+    @Test
     void returnScoreForGuess() {
         givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
         GuessResult result = wordz.assess(PLAYER, WRONG_WORD);

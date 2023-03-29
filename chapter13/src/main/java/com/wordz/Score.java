@@ -48,4 +48,8 @@ public class Score {
     private boolean isCorrectLetter(char current) {
         return correct.charAt(position) == current;
     }
+
+    public boolean allCorrect() {
+        return false;
+    }
 }
