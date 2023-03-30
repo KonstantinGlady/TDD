@@ -66,7 +66,7 @@ public class GuessTest {
 
     @Test
     void updateAttemptNumber() {
-        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD,  1));
+        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
         wordz.assess(PLAYER, WRONG_WORD);
         var game = getUpdatedGameInRepository();
 

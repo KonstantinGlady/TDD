@@ -15,6 +15,9 @@ public class Game {
         this.isGameOver = isGameOver;
     }
 
+    public static Game create(Player player, String correctWord) {
+        return new Game(player, correctWord, 0, false);
+    }
     public static Game create(Player player, String correctWord, int attemptNumber) {
         return new Game(player, correctWord, attemptNumber, false);
     }
