@@ -23,12 +23,21 @@ public class GuessTest {
     private Wordz wordz;
 
     @Test
+    void recordsGameOverOnCorrectGuess() {
+        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
+        wordz.assess(PLAYER, CORRECT_WORD);
+        var game = getUpdatedGameInRepository();
+        assertThat(game.isGameOver()).isTrue();
+    }
+
+    @Test
     void rejectsGuessAfterGameOver() {
-        var gameOver = new Game(PLAYER, CORRECT_WORD,1, true);
+        var gameOver = new Game(PLAYER, CORRECT_WORD, 1, true);
         givenGameInRepository(gameOver);
         GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
         assertThat(result.isError()).isTrue();
     }
+
     @Test
     void gameOverOnTooManyIncorrectGuesses() {
         int maximumGuesses = 5;
@@ -56,7 +65,7 @@ public class GuessTest {
 
     @Test
     void returnScoreForGuess() {
-        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD,  1));
+        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD, 1));
         GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
         Letter firstLetter = result.score().letter(0);
 
