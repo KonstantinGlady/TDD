@@ -1,4 +1,4 @@
 package com.wordz;
 
-public record GuessResult(Score score, boolean isGameOver) {
+public record GuessResult(Score score, boolean isGameOver, boolean isError) {
 }

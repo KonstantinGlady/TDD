@@ -26,11 +26,11 @@ public class Wordz {
         Score score = game.attempt(guess);
 
         if (score.allCorrect()) {
-            return new GuessResult(score, true);
+            return new GuessResult(score, true, false);
         }
 
         gameRepository.update(game);
 
-        return new GuessResult(score, game.hasNoRemainingGuesses());
+        return new GuessResult(score, game.hasNoRemainingGuesses(), false);
     }
 }

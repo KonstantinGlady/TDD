@@ -6,7 +6,7 @@ public class Game {
     private final String targetWord;
     private int attemptNumber;
 
-    public Game(Player player, String targetWord, int attemptNumber, boolean b) {
+    public Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
 
         this.player = player;
         this.targetWord = targetWord;
