@@ -12,7 +12,7 @@ public class Game {
         this.attemptNumber = attemptNumber;
     }
 
-    public static Game create(Player player, String correctWord) {
+    public static Game create(Player player, String correctWord, int attemptNumber) {
         return new Game(player, correctWord, 0, false);
     }
 
