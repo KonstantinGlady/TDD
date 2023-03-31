@@ -7,7 +7,7 @@ public class Game {
     private int attemptNumber;
     private boolean isGameOver;
 
-    public Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
+    Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
 
         this.player = player;
         this.targetWord = targetWord;
@@ -23,7 +23,7 @@ public class Game {
         return new Game(player, correctWord, attemptNumber, false);
     }
 
-    public String getTargetWord() {
+    public String getWord() {
         return targetWord;
     }
 
@@ -35,19 +35,25 @@ public class Game {
         return player;
     }
 
-    public void incrementAttemptNumber() {
-        attemptNumber++;
-    }
-
     public Score attempt(String lastGuess) {
-        attemptNumber++;
-        var target = new Word(targetWord);
+        trackNumberOfAttempts();
 
-        return target.guess(lastGuess);
+        var word = new Word(targetWord);
+        Score score = word.guess(lastGuess);
+
+        if (score.allCorrect()) {
+            end();
+        }
+
+        return score;
     }
 
-    public boolean hasNoRemainingGuesses() {
-        return attemptNumber == MAX_NUMBER_ALLOWED_GUESSES;
+    private void trackNumberOfAttempts() {
+        attemptNumber++;
+
+        if (attemptNumber == MAX_NUMBER_ALLOWED_GUESSES) {
+            end();
+        }
     }
 
     public boolean isGameOver() {

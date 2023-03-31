@@ -27,14 +27,17 @@ public class GuessTest {
         givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
         wordz.assess(PLAYER, CORRECT_WORD);
         var game = getUpdatedGameInRepository();
+
         assertThat(game.isGameOver()).isTrue();
     }
 
     @Test
     void rejectsGuessAfterGameOver() {
-        var gameOver = new Game(PLAYER, CORRECT_WORD, 1, true);
-        givenGameInRepository(gameOver);
+        var game = Game.create(PLAYER, CORRECT_WORD);
+        game.end();
+        givenGameInRepository(game);
         GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
+
         assertThat(result.isError()).isTrue();
     }
 
@@ -43,19 +46,16 @@ public class GuessTest {
         int maximumGuesses = 5;
         givenGameInRepository(Game.create(PLAYER, CORRECT_WORD, maximumGuesses - 1));
         GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
+
         assertThat(result.isGameOver()).isTrue();
     }
 
     @Test
     void reportsGameOverOnCorrectGuess() {
-
         Player player = new Player();
-
         var game = new Game(player, "ARISE", 0, false);
         when(gameRepository.fetchForPlayer(player))
                 .thenReturn(game);
-
-        // var wordz = new Wordz(gameRepository, wordRepository, randomNumber);// no clue why author use this constructor
 
         var guess = "ARISE";
         GuessResult result = wordz.assess(player, guess);

@@ -11,31 +11,20 @@ public class Wordz {
     }
 
     public void newGame(Player player) {
-
         var word = wordSelection.choseRandomWord();
-
-        var game = new Game(player, word, 0, false);
-
-        gameRepository.create(game);
+        gameRepository.create(Game.create(player, word));
     }
 
     public GuessResult assess(Player player, String guess) {
-
         var game = gameRepository.fetchForPlayer(player);
+
         if (game.isGameOver()) {
             return GuessResult.ERROR;
         }
 
         Score score = game.attempt(guess);
-        if (score.allCorrect()) {
-            game.end();
-            gameRepository.update(game);
-
-            return new GuessResult(score, true, false);
-        }
-
         gameRepository.update(game);
 
-        return new GuessResult(score, game.hasNoRemainingGuesses(), false);
+        return GuessResult.create(score, game.isGameOver());
     }
 }
