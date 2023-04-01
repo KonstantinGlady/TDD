@@ -6,6 +6,6 @@ public class Word {
 
     public Score guess(String attempt) {
         Score score = new Score();
-        return null;
+        return score;
     }
 }

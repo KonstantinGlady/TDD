@@ -2,6 +2,6 @@ package com.wordz.domain;
 
 public class Score {
     public Letter letter(int position) {
-        return null;
+        return Letter.INCORRECT;
     }
 }
