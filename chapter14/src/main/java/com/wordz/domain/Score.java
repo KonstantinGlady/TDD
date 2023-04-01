@@ -3,6 +3,7 @@ package com.wordz.domain;
 public class Score {
     private final String correct;
     private Letter result = Letter.INCORRECT;
+    private int position;
 
     public Score(String correctWord) {
 
@@ -13,10 +14,14 @@ public class Score {
         return result;
     }
 
-    public void assess(int position, String attempt) {
+    public void assess(String attempt) {
 
-        if (attempt.charAt(position) == correct.charAt(position)) {
+        if (isCorrectLetter(attempt)) {
             result = Letter.CORRECT;
         }
+    }
+
+    private boolean isCorrectLetter(String attempt) {
+        return attempt.charAt(position) == correct.charAt(position);
     }
 }

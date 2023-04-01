@@ -10,7 +10,7 @@ public class Word {
     public Score guess(String attempt) {
 
         Score score = new Score(word);
-        score.assess(0, attempt);
+        score.assess(attempt);
 
         return score;
     }
