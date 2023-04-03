@@ -24,6 +24,6 @@ public class WordSelectionFailureTest {
 
         var selection = new WordSelection(wordRepository, random);
         assertThatExceptionOfType(WordSelectionException.class)
-                .isThrownBy(() -> selection.chooseRandomWord());
+                .isThrownBy(selection::chooseRandomWord);
     }
 }
