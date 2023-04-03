@@ -10,7 +10,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doThrow;
 
 @ExtendWith(MockitoExtension.class)
-public class SelectWordFailureTest {
+public class WordSelectionFailureTest {
 
     @Mock
     private WordRepository wordRepository;
@@ -24,6 +24,6 @@ public class SelectWordFailureTest {
 
         var selection = new WordSelection(wordRepository, random);
         assertThatExceptionOfType(WordSelectionException.class)
-                .isThrownBy(() -> selection.getRandomWord());
+                .isThrownBy(() -> selection.chooseRandomWord());
     }
 }
