@@ -23,12 +23,18 @@ class NewGameTest {
         var player = new Player();
         wordz.newGame(player);
 
-        var gameArgument = ArgumentCaptor.forClass(Game.class);
-        verify(gameRepository).create(gameArgument.capture());
-        var game = gameArgument.getValue();
+        Game game = getGameInRepository();
 
         assertThat(game.getWord()).isEqualTo("ARISE");
         assertThat(game.getAttemptNumber()).isZero();
         assertThat(game.getPlayer()).isSameAs(player);
+    }
+
+    private Game getGameInRepository() {
+
+        var gameArgument = ArgumentCaptor.forClass(Game.class);
+        verify(gameRepository).create(gameArgument.capture());
+
+        return gameArgument.getValue();
     }
 }
