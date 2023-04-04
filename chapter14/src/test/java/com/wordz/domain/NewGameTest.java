@@ -49,6 +49,8 @@ class NewGameTest {
     @Test
     void startNewGame() {
 
+        givenWordToSelect("ARISE");
+
         var player = new Player();
         wordz.newGame(player);
 
