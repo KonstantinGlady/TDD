@@ -15,6 +15,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class NewGameTest {
 
+    private final Player PLAYER = new Player();
     @Mock
     private WordRepository wordRepository;
     @Mock
@@ -51,14 +52,13 @@ class NewGameTest {
 
         givenWordToSelect("ARISE");
 
-        var player = new Player();
-        wordz.newGame(player);
+        wordz.newGame(PLAYER);
 
         Game game = getGameInRepository();
 
         assertThat(game.getWord()).isEqualTo("ARISE");
         assertThat(game.getAttemptNumber()).isZero();
-        assertThat(game.getPlayer()).isSameAs(player);
+        assertThat(game.getPlayer()).isSameAs(PLAYER);
     }
 
     private Game getGameInRepository() {
