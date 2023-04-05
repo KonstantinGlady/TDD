@@ -2,14 +2,14 @@ package com.wordz.domain;
 
 public class Game {
     private final Player player;
-    private final String correct;
-    private int attempt;
+    private final String targetWord;
+    private int attemptNumber;
 
-    public Game(Player player, String correctWord, int attempt) {
+    public Game(Player player, String correctWord, int attemptNumber) {
 
         this.player = player;
-        this.correct = correctWord;
-        this.attempt = attempt;
+        this.targetWord = correctWord;
+        this.attemptNumber = attemptNumber;
     }
 
     public static Game create(Player player, String correctWord) {
@@ -17,18 +17,21 @@ public class Game {
     }
 
     public String getWord() {
-        return correct;
+        return targetWord;
     }
 
     public int getAttemptNumber() {
-        return attempt;
+        return attemptNumber;
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public void incrementAttemptNumber() {
-        attempt++;
+    public Score attempt(String latestGuess) {
+        attemptNumber++;
+        var target = new Word(targetWord);
+
+        return target.guess(latestGuess);
     }
 }
