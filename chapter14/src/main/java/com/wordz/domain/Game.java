@@ -12,6 +12,10 @@ public class Game {
         this.attempt = attempt;
     }
 
+    public static Game create(Player player, String correctWord) {
+        return null;
+    }
+
     public String getWord() {
         return correct;
     }
