@@ -2,7 +2,7 @@ package com.wordz.domain;
 
 public class Game {
     private final Player player;
-    private String correct;
+    private final String correct;
     private int attempt;
 
     public Game(Player player, String correctWord, int attempt) {
@@ -13,7 +13,7 @@ public class Game {
     }
 
     public static Game create(Player player, String correctWord) {
-        return null;
+        return new Game(player, correctWord, 0);
     }
 
     public String getWord() {
