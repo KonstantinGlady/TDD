@@ -16,6 +16,10 @@ public class Game {
         return new Game(player, correctWord, 0);
     }
 
+    public static Game create(Player player, String correctWord, int attempt) {
+        return new Game(player, correctWord, attempt);
+    }
+
     public String getWord() {
         return targetWord;
     }

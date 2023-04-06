@@ -71,6 +71,16 @@ public class GuessTest {
         assertThat(firstLetter).isEqualTo(Letter.PART_CORRECT);
     }
 
+    @Test
+    void gameOverOnTooManyIncorrectGuesses() {
+        int maximumGuesses = 5;
+
+        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD, maximumGuesses - 1));
+        GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
+
+        assertThat(result.isGameOver()).isTrue();
+    }
+
     private void givenGameInRepository(Game game) {
         when(gameRepository.fetchForPlayer(PLAYER)).thenReturn(game);
     }
