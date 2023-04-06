@@ -22,6 +22,25 @@ public class GuessTest {
     private GameRepository gameRepository;
     @InjectMocks
     private Wordz wordz;
+    @Mock
+    private WordRepository wordRepository;
+    @Mock
+    private RandomNumber randomNumber;
+
+    @Test
+    void reportsGameOverOnCorrectGuess() {
+
+        Player player = new Player();
+        var game = new Game(player, "ARISE", 0);
+        when(gameRepository.fetchForPlayer(player))
+                .thenReturn(game);
+
+        var wordz = new Wordz(gameRepository, wordRepository, randomNumber);
+        String guess = "ARISE";
+        GuessResult result = wordz.assess(player, guess);
+
+        assertThat(result.isGameOver()).isTrue();
+    }
 
     @Test
     void updateAttemptNumber() {
