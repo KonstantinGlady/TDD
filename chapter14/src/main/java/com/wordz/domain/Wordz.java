@@ -27,7 +27,7 @@ public class Wordz {
         }
         gameRepository.update(game);
 
-        return new GuessResult(score, false);
+        return new GuessResult(score, game.hasNoRemainingGuesses());
     }
 
 }
