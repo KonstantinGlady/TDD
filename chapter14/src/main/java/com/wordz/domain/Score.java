@@ -47,4 +47,9 @@ public class Score {
     private boolean isCorrectLetter(char currentChar) {
         return correct.charAt(position) == currentChar;
     }
+
+    public boolean allCorrect() {
+
+        return false;
+    }
 }

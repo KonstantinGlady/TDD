@@ -21,6 +21,10 @@ public class Wordz {
 
         var game = gameRepository.fetchForPlayer(player);
         Score score = game.attempt(guess);
+
+        if (score.allCorrect()) {
+            return new GuessResult(score, true);
+        }
         gameRepository.update(game);
 
         return new GuessResult(score, false);
