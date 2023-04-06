@@ -50,6 +50,10 @@ public class Score {
 
     public boolean allCorrect() {
 
-        return false;
+        var totalCorrect = result.stream()
+                .filter(letter -> letter == Letter.CORRECT)
+                .count();
+
+        return totalCorrect == result.size();
     }
 }
