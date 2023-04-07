@@ -27,6 +27,9 @@ public class Wordz {
 
         Score score = game.attempt(guess);
         if (score.allCorrect()) {
+            game.end();
+            gameRepository.update(game);
+
             return new GuessResult(score, true, false);
         }
 

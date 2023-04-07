@@ -49,4 +49,8 @@ public class Game {
     public boolean isGameOver() {
         return isGameOver;
     }
+
+    public void end() {
+        isGameOver = true;
+    }
 }
