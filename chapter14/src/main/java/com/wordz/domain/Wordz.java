@@ -20,11 +20,16 @@ public class Wordz {
     public GuessResult assess(Player player, String guess) {
 
         var game = gameRepository.fetchForPlayer(player);
-        Score score = game.attempt(guess);
 
+        if (game.isGameOver()) {
+            return GuessResult.ERROR;
+        }
+
+        Score score = game.attempt(guess);
         if (score.allCorrect()) {
             return new GuessResult(score, true, false);
         }
+
         gameRepository.update(game);
 
         return new GuessResult(score, game.hasNoRemainingGuesses(), false);
