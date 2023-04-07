@@ -28,6 +28,17 @@ public class GuessTest {
     private RandomNumber randomNumber;
 
     @Test
+    void recordsGameOverOnCorrectGuess() {
+
+        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
+        wordz.assess(PLAYER, CORRECT_WORD);
+
+        var game = getUpdatedGameInRepository();
+
+        assertThat(game.isGameOver()).isTrue();
+    }
+
+    @Test
     void reportsGameOverOnCorrectGuess() {
 
         Player player = new Player();
