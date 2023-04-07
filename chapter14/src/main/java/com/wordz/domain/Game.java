@@ -1,11 +1,11 @@
 package com.wordz.domain;
 
 public class Game {
+    private static final int MAXIMUM_NUMBER_ALLOWED_GUESSES = 5;
     private final Player player;
     private final String targetWord;
     private int attemptNumber;
     private boolean isGameOver;
-    private final int MAXIMUM_NUMBER_ALLOWED_GUESSES = 5;
 
     public Game(Player player, String correctWord, int attemptNumber, boolean isGameOver) {
 
@@ -36,14 +36,24 @@ public class Game {
     }
 
     public Score attempt(String latestGuess) {
-        attemptNumber++;
-        var target = new Word(targetWord);
+        trackNumberOfAttempt();
 
-        return target.guess(latestGuess);
+        var word = new Word(targetWord);
+        Score score = word.guess(latestGuess);
+
+        if ( score.allCorrect()) {
+            end();
+        }
+
+        return score;
     }
 
-    public boolean hasNoRemainingGuesses() {
-        return attemptNumber == MAXIMUM_NUMBER_ALLOWED_GUESSES;
+    private void trackNumberOfAttempt() {
+        attemptNumber++;
+
+        if (attemptNumber == MAXIMUM_NUMBER_ALLOWED_GUESSES) {
+            end();
+        }
     }
 
     public boolean isGameOver() {

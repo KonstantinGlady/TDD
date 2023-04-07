@@ -5,16 +5,13 @@ public class Wordz {
     private final WordSelection wordSelection;
 
     public Wordz(GameRepository gameRepository, WordRepository wordRepository, RandomNumber rnd) {
-
         this.gameRepository = gameRepository;
         this.wordSelection = new WordSelection(wordRepository, rnd);
     }
 
     public void newGame(Player player) {
-
         var word = wordSelection.chooseRandomWord();
-        var game = new Game(player, word, 0, true);
-        gameRepository.create(game);
+        gameRepository.create(Game.create(player, word));
     }
 
     public GuessResult assess(Player player, String guess) {
@@ -26,16 +23,10 @@ public class Wordz {
         }
 
         Score score = game.attempt(guess);
-        if (score.allCorrect()) {
-            game.end();
-            gameRepository.update(game);
-
-            return new GuessResult(score, true, false);
-        }
 
         gameRepository.update(game);
 
-        return new GuessResult(score, game.hasNoRemainingGuesses(), false);
+        return GuessResult.create(score, game.isGameOver());
     }
 
 }

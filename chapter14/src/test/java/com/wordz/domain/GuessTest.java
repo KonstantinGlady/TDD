@@ -41,14 +41,10 @@ public class GuessTest {
     @Test
     void reportsGameOverOnCorrectGuess() {
 
-        Player player = new Player();
-        var game = new Game(player, "ARISE", 0, true);
-        when(gameRepository.fetchForPlayer(player))
-                .thenReturn(game);
-
+        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
         var wordz = new Wordz(gameRepository, wordRepository, randomNumber);
-        String guess = "ARISE";
-        GuessResult result = wordz.assess(player, guess);
+
+        GuessResult result = wordz.assess(PLAYER, CORRECT_WORD);
 
         assertThat(result.isGameOver()).isTrue();
     }
@@ -85,9 +81,9 @@ public class GuessTest {
     @Test
     void rejectsGuessAfterGameOver() {
 
-        var game = new Game(PLAYER, CORRECT_WORD, 0, true);
+        var game = Game.create(PLAYER, CORRECT_WORD);
+        game.end();
         givenGameInRepository(game);
-
         GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
 
         assertThat(result.isError()).isTrue();
