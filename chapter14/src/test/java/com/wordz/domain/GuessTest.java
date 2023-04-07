@@ -31,7 +31,7 @@ public class GuessTest {
     void reportsGameOverOnCorrectGuess() {
 
         Player player = new Player();
-        var game = new Game(player, "ARISE", 0);
+        var game = new Game(player, "ARISE", 0, true);
         when(gameRepository.fetchForPlayer(player))
                 .thenReturn(game);
 
@@ -69,6 +69,17 @@ public class GuessTest {
         Letter firstLetter = result.score().letter(0);
 
         assertThat(firstLetter).isEqualTo(Letter.PART_CORRECT);
+    }
+
+    @Test
+    void rejectsGuessAfterGameOver() {
+
+        var game = new Game(PLAYER, CORRECT_WORD, 0, true);
+        givenGameInRepository(game);
+
+        GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
+
+        assertThat(result.isError()).isTrue();
     }
 
     @Test

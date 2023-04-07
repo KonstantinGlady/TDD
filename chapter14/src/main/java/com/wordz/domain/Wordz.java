@@ -13,7 +13,7 @@ public class Wordz {
     public void newGame(Player player) {
 
         var word = wordSelection.chooseRandomWord();
-        var game = new Game(player, word, 0);
+        var game = new Game(player, word, 0, true);
         gameRepository.create(game);
     }
 
@@ -23,11 +23,11 @@ public class Wordz {
         Score score = game.attempt(guess);
 
         if (score.allCorrect()) {
-            return new GuessResult(score, true);
+            return new GuessResult(score, true, false);
         }
         gameRepository.update(game);
 
-        return new GuessResult(score, game.hasNoRemainingGuesses());
+        return new GuessResult(score, game.hasNoRemainingGuesses(), false);
     }
 
 }
