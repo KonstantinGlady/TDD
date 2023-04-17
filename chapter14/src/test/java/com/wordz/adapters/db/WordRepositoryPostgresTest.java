@@ -20,6 +20,7 @@ class WordRepositoryPostgresTest {
 
     private DataSource dataSource;
 
+    @SuppressWarnings("unused")
     private final ConnectionHolder connectionHolder = () -> dataSource.getConnection();
 
     @BeforeEach
@@ -35,7 +36,7 @@ class WordRepositoryPostgresTest {
     }
 
     @Test
-    @DataSet("adapters/data/wordTable.json")
+    @DataSet("adapters.data/wordTable.json")
     void fetchesWord() {
         WordRepository wordRepository = new WordRepositoryPostgres(dataSource);
         var actual = wordRepository.fetchWordByNumber(27);
