@@ -9,9 +9,17 @@ public class Wordz {
         this.wordSelection = new WordSelection(wordRepository, rnd);
     }
 
-    public void newGame(Player player) {
+    public boolean newGame(Player player) {
+
+        var game = gameRepository.fetchForPlayer(player);
+        if (game != null) {
+            return false;
+        }
+
         var word = wordSelection.chooseRandomWord();
         gameRepository.create(Game.create(player, word));
+
+        return true;
     }
 
     public GuessResult assess(Player player, String guess) {
