@@ -11,13 +11,17 @@ class WordzTest {
         var word = new Word("A");
         var score = word.guess("Z");
         var result = score.letter(0);
-        assertThat(result).isEqualTo(Letter.INCORRECT);
+        assertScoreForLetter(score, 0, Letter.INCORRECT);
     }
 
     @Test
     void oneCorrectLetter() {
         var word = new Word("A");
         var score = word.guess("A");
-        assertThat(score.letter(0)).isEqualTo(Letter.CORRECT);
+        assertScoreForLetter(score, 0, Letter.CORRECT);
+    }
+
+    private static void assertScoreForLetter(Score score, int position, Letter expected) {
+        assertThat(score.letter(position)).isEqualTo(expected);
     }
 }
