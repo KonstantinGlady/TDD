@@ -1,10 +1,17 @@
 package com.wordz.domain;
 
 public class WordSelection {
+    private final WordRepository repository;
+    private final RandomNumber random;
+
     public WordSelection(WordRepository repository, RandomNumber random) {
+        this.repository = repository;
+        this.random = random;
     }
 
     public String choseRandomWord() {
-        return null;
+        var wordNumber = repository.highestWordNumber();
+
+        return repository.fetchWordByNumber(random.next(wordNumber));
     }
 }
