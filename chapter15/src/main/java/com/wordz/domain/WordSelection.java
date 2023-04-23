@@ -10,8 +10,14 @@ public class WordSelection {
     }
 
     public String choseRandomWord() {
-        var wordNumber = repository.highestWordNumber();
 
-        return repository.fetchWordByNumber(random.next(wordNumber));
+        try {
+            var wordNumber = repository.highestWordNumber();
+
+            return repository.fetchWordByNumber(random.next(wordNumber));
+        } catch (WordRepositoryException ex) {
+
+            throw new WordSelectionException("Couldn't find word", ex);
+        }
     }
 }

@@ -7,10 +7,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
+
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doThrow;
 
-@Disabled
 @ExtendWith(MockitoExtension.class)
 public class WordSelectionFailureTest {
 
@@ -24,7 +25,7 @@ public class WordSelectionFailureTest {
 
         doThrow(new WordRepositoryException())
                 .when(repository)
-                .fetchWordByNumber(any());
+                .fetchWordByNumber(anyInt());
 
         var selection = new WordSelection(repository, random);
 
