@@ -4,7 +4,7 @@ public class WordSelection {
     public WordSelection(WordRepository repository, RandomNumber random) {
     }
 
-    public String getRandomWord() {
+    public String choseRandomWord() {
         return null;
     }
 }
